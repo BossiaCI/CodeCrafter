@@ -121,3 +121,15 @@ Intégration IntelliJ : Actions dans le menu Tools, toolwindow dédiée, inspect
 Optimisations : Traitement parallèle des fichiers (rayon), indexation incrémentale (seulement les fichiers modifiés), cache multi-niveaux (mémoire → disque → API), compilation en release avec LTO et optimisations agressives.
 
 Métriques Cibles : Initialisation d'un projet 10k fichiers : < 30s, requête simple avec contexte : < 2s, génération de documentation complète : < 5min, utilisation mémoire : < 500MB pour projet moyen.
+
+
+8. #### Différenciateurs Clés (vision projet)
+Ce qui rend cet assistant unique par rapport à Claude Code ou d'autres outils :
+
+Mémoire Persistante Avancée : Contrairement aux assistants qui oublient entre sessions, celui-ci maintient un graphe de connaissance du projet qui évolue. Apprentissage des patterns spécifiques au projet et à l'équipe. Suggestions qui s'améliorent avec le temps et l'usage.
+
+Compréhension Profonde : Capacité à expliquer le "pourquoi" pas seulement le "quoi". Génération de documentation narrative, pas juste technique. Identification des décisions architecturales et leurs raisons.
+
+Multi-IDE Natif : Support first-class pour VS Code ET IntelliJ dès le départ. API plugin pour extension à d'autres IDE. Mode CLI pour intégration CI/CD.
+
+Focus Onboarding : Parcours guidés générés automatiquement pour nouveaux développeurs. Identification des 20% du code qui représentent 80% de la valeur. Quizz interactifs pour vérifier la compréhension.
