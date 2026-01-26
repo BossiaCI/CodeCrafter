@@ -35,6 +35,21 @@ Niveau 3 - Graph de Connaissance : Relations entre fonctions, classes, modules, 
 Niveau 4 - Historique Persistant : Base SQLite locale pour l'historique des sessions, export/import pour partage d'équipe, compression des anciennes données.
 
 
+3. #### Flux d'Exécution Typique
+Voici comment l'assistant traite une requête utilisateur :
+
+Phase 1 - Réception : L'utilisateur soumet une commande via CLI ou IDE. Le parser identifie le type de requête (génération, analyse, refactoring, documentation). Le système charge le contexte du workspace.
+
+Phase 2 - Analyse Contextuelle : Le module Memory récupère les fichiers pertinents via recherche vectorielle. L'AST des fichiers concernés est parsé et analysé. Le graphe de dépendances est construit pour comprendre les relations.
+
+Phase 3 - Enrichissement du Prompt : Le contexte est assemblé en incluant les fichiers pertinents, l'historique récent, les conventions du projet (détectées automatiquement), et les erreurs courantes du projet.
+
+Phase 4 - Génération LLM : La requête enrichie est envoyée au modèle avec streaming pour affichage progressif. Les réponses sont validées syntaxiquement avant présentation. Les suggestions sont classées par pertinence et confiance.
+
+Phase 5 - Post-traitement : Le code généré est formaté selon les conventions du projet. Les tests sont suggérés ou générés automatiquement. La documentation inline est ajoutée. L'index vectoriel est mis à jour.
+
+
+
 ## Mode CLI interactif:
 
 $ codecraft init
