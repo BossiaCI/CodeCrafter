@@ -1,3 +1,28 @@
+
+## Documentation
+
+#### Architecture Globale
+L'application s'articule autour de plusieurs composant clés qui communiquent entre eux pour offir une expérience fluide et performante.
+
+1. #### Structure de Modules Principaux
+Module Core (core/) - Le coeur de l'application contenant la logique métier fondamentale, incluant l'analyse syntaxique (AST parsing), l'indexation du code, la gestion du contexte projet.
+
+Module LLM (llm/) - L'interface avec les modèles de langage (API Claude, mais extensible à d'autres), gérant le streaming, la gestion des tokens, et les retry avec backoff exponentiel.
+
+Module Memory (memory/) - Le système de mémoire contextuelle utilisant une base vectorielle (qdrant ou milvus) pour l'embedding et la récupération sémantique, avec un cache LRU pour les requêtes fréquentes.
+
+Module Analysis (analysis/) - Les outils d'analyse statique du code, détection d'erreurs (via clippy pour Rust, eslint pour JS, etc.), calcul de métriques de complexité, et analyse de dépendances.
+
+Module Refactoring (refactoring/) - Les stratégies de refactoring automatisé, la détection de code smell, et les suggestions d'amélioration basées sur les patterns.
+
+Module Documentation (docs/) - La génération de documentation avec extraction automatique de commentaires, génération de diagrammes (PlantUML, Mermaid), et création de documentation interactive.
+
+Module CLI (cli/) - L'interface en ligne de commande avec parsing des arguments (clap), gestion des commandes interactives, et output formaté avec couleurs.
+
+Module Plugins (plugins/) - Les intégrations IDE avec protocole LSP (Language Server Protocol) pour VS Code et IntelliJ, webhooks pour événements, et système de plugins extensible.
+
+
+
 ## Mode CLI interactif:
 
 $ codecraft init
