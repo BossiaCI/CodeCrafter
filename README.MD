@@ -49,6 +49,17 @@ Phase 4 - Génération LLM : La requête enrichie est envoyée au modèle avec s
 Phase 5 - Post-traitement : Le code généré est formaté selon les conventions du projet. Les tests sont suggérés ou générés automatiquement. La documentation inline est ajoutée. L'index vectoriel est mis à jour.
 
 
+4. #### Fonctionnalités Clés
+
+Génération de Code Contextuelle : Analyse du style de code existant (naming conventions, patterns architecturaux), respect des types et interfaces existants, suggestions de tests unitaires pertinents, détection automatique du framework/bibliothèques utilisés.
+
+Détection d'Erreurs Avancée : Analyse statique multi-niveaux (syntaxe, sémantique, logique), détection de bugs potentiels (null pointer, race conditions), suggestions de corrections avec explication pédagogique, intégration avec les outils natifs du langage.
+
+Refactoring Intelligent : Extraction de fonctions/méthodes avec analyse de portée, renommage safe avec vérification des références, simplification de la complexité cyclomatique, conversion vers patterns modernes du langage.
+
+Documentation Automatique : Génération de README avec description, installation, usage, diagrammes UML générés depuis le code (classes, séquences, composants), documentation API avec exemples d'utilisation, tutoriels interactifs pour nouveaux contributeurs.
+
+Compréhension de Code : Mode "onboarding" pour nouveaux développeurs avec parcours guidé du codebase, visualisation interactive des flux d'exécution, explication en langage naturel de portions complexes, identification des points d'entrée et patterns clés.
 
 ## Mode CLI interactif:
 
