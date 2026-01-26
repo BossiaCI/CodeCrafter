@@ -79,7 +79,9 @@ Persistance : SQLite avec sqlx pour historique et cache, serde pour sérialisati
 Tests : proptest pour property-based testing, criterion pour benchmarks de performance, couverture > 80%.
 
 
-## Mode CLI interactif:
+6. #### Interface Utilisateur
+
+##### Mode CLI interactif:
 
 $ codecraft init
 ✓ Projet analysé : 234 fichiers, 45k lignes
@@ -93,3 +95,23 @@ $ codecraft ask "Comment fonctionne l'authentification ?"
    [Diagramme de séquence]
    
    Voulez-vous voir le code détaillé ? (o/n)
+
+#### Commandes Principales :
+
+init : Initialise l'assistant dans le projet
+
+ask <question> : Pose une question sur le code
+
+generate <description> : Génère du nouveau code
+
+refactor <path> : Refactorise un fichier/module
+
+document : Génère la documentation complète
+
+analyze : Analyse complète avec métriques
+
+explain <path> : Explique un fichier en détail
+
+Intégration VS Code : Commandes dans la palette (Ctrl+Shift+P), panneau latéral avec arbre de navigation, diagnostics inline avec quick fixes, hover pour explications contextuelles.
+
+Intégration IntelliJ : Actions dans le menu Tools, toolwindow dédiée, inspections personnalisées, intentions avec Alt+Enter.
