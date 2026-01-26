@@ -115,3 +115,9 @@ explain <path> : Explique un fichier en détail
 Intégration VS Code : Commandes dans la palette (Ctrl+Shift+P), panneau latéral avec arbre de navigation, diagnostics inline avec quick fixes, hover pour explications contextuelles.
 
 Intégration IntelliJ : Actions dans le menu Tools, toolwindow dédiée, inspections personnalisées, intentions avec Alt+Enter.
+
+
+7. #### Performance et Scalabilité
+Optimisations : Traitement parallèle des fichiers (rayon), indexation incrémentale (seulement les fichiers modifiés), cache multi-niveaux (mémoire → disque → API), compilation en release avec LTO et optimisations agressives.
+
+Métriques Cibles : Initialisation d'un projet 10k fichiers : < 30s, requête simple avec contexte : < 2s, génération de documentation complète : < 5min, utilisation mémoire : < 500MB pour projet moyen.
