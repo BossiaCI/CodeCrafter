@@ -61,6 +61,24 @@ Documentation Automatique : Génération de README avec description, installatio
 
 Compréhension de Code : Mode "onboarding" pour nouveaux développeurs avec parcours guidé du codebase, visualisation interactive des flux d'exécution, explication en langage naturel de portions complexes, identification des points d'entrée et patterns clés.
 
+
+5. #### Stack Technologique
+
+Langage Principal : Rust (édition 2021+) pour performance et sécurité mémoire.
+
+Parsing & AST : tree-sitter pour parsing multi-langage performant, syn pour parsing Rust spécifique, support de 20+ langages populaires.
+
+Base Vectorielle : qdrant embedded ou milvus lite, fastembed pour génération d'embeddings, dimension 384 ou 768 selon le modèle.
+
+CLI : clap v4 pour parsing des arguments, indicatif pour progress bars et spinners, colored pour output formaté.
+
+LSP : tower-lsp pour l'implémentation du protocole, async runtime avec tokio, support WebSocket pour IDE web.
+
+Persistance : SQLite avec sqlx pour historique et cache, serde pour sérialisation/désérialisation, compression avec zstd.
+
+Tests : proptest pour property-based testing, criterion pour benchmarks de performance, couverture > 80%.
+
+
 ## Mode CLI interactif:
 
 $ codecraft init
