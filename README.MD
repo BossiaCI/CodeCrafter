@@ -23,6 +23,18 @@ Module Plugins (plugins/) - Les intégrations IDE avec protocole LSP (Language S
 
 
 
+2. #### Architecture de la Mémoire Contextuelle
+Le système de mémoire est crucial pour maintenir un contexte cohérent. Il fonctionne sur plusieurs niveaux :
+
+Niveau 1 - Cache Court Terme : Stockage en mémoire RAM des 10 dernières interactions avec timestamps et métadonnées, accès ultra-rapide (< 1ms).
+
+Niveau 2 - Index Vectoriel : Embeddings de tous les fichiers du projet, requêtes sémantiques pour retrouver le contexte pertinent, mise à jour incrémentale lors des modifications.
+
+Niveau 3 - Graph de Connaissance : Relations entre fonctions, classes, modules, graphe de dépendances traversable, détection de patterns d'utilisation.
+
+Niveau 4 - Historique Persistant : Base SQLite locale pour l'historique des sessions, export/import pour partage d'équipe, compression des anciennes données.
+
+
 ## Mode CLI interactif:
 
 $ codecraft init
