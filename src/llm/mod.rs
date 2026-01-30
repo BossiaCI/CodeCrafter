@@ -2,7 +2,6 @@
 
 use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
-use std::error::Error;
 use std::collections::HashMap;
 
 pub mod providers;
@@ -43,7 +42,7 @@ pub struct LLMProviderConfig {
     pub api_key: Option<String>,
 
     /// Headers additionnels pour les requêtes API
-    pub headers: Option<HashMap<String, String>>,
+    pub headers: HashMap<String, String>,
 
     /// Paramètres spécifiques au provider/modèle
     pub parameters: ModelParameters,
@@ -76,21 +75,21 @@ pub enum DeploymentMode {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ModelParameters {
     /// Température pour la génération de texte (0.0 - 2.0)
-    pub temperature: Option<f32>,
+    pub temperature: f32,
 
     /// Top P (sampling) pour la génération de texte (0.0 - 1.0) / Nucleus Sampling
-    pub top_p: Option<f32>,
+    pub top_p: f32,
 
     /// Nombre maximal de tokens à générer
-    pub max_tokens: Option<u32>,
+    pub max_tokens: u32,
 
 
     /// Présence de pénalité
-    pub presence_penalty: Option<f32>,
+    pub presence_penalty: f32,
 
     /// Fréquence de pénalité
-    pub frequency_penalty: Option<f32>,
+    pub frequency_penalty: f32,
 
     /// Stop sequences pour arrêter la génération
-    pub stop_sequences: Option<Vec<String>>,
+    pub stop_sequences: Vec<String>,
 }
