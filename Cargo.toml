@@ -2,5 +2,254 @@
 name = "codecrafter"
 version = "0.1.0"
 edition = "2024"
+authors = ["Chardy Tmart"]
+description = "Assistant de code IA avec support multiprovider (Claude, OpenAI, Azure, etc.)"
+license = "MIT"
+repository = "https://github.com/BossiaCI/CodeCrafter"
+keywords = ["AI", "code assistant", "multiprovider", "Claude", "OpenAI", "Azure", "Rust", "CLI", "LLM", "code generation", "refactoring", "documentation"]
+categories = ["command-line-utilities", "artificial-intelligence", "development-tools"]
+
+[[bin]]
+name = "codecrafter"
+path = "src/main.rs"
+
 
 [dependencies]
+# CLI et inerface utilisateur
+clap = { version = "4.5", features = ["derive", "env", "cargo"] }
+colored = "2.1"
+indicatif = "0.17"
+dialoguer = "0.11"
+console = "0.15"
+
+
+# Async Runtime
+tokio = { version = "1.40", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+
+
+# Requêtes HTTP
+reqwest = { version = "0.11", features = ["json", "stream", "rustls-tls"], default-features = false}
+hyper = "0.14"
+
+
+# Serialisation
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+
+# Gestion des erreurs
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Parsing de code (tree-sitter)
+tree-sitter = "0.20"
+tree-sitter-cli = "0.20"
+tree-sitter-python = "0.20"
+tree-sitter-javascript = "0.20"
+tree-sitter-rust = "0.20"
+tree-sitter-go = "0.20"
+tree-sitter-java = "0.20"
+tree-sitter-cpp = "0.20"
+tree-sitter-c-sharp = "0.20"
+tree-sitter-php = "0.20"
+tree-sitter-ruby = "0.20"
+tree-sitter-swift = "0.20"
+tree-sitter-kotlin = "0.20"
+tree-sitter-tsx = "0.20"
+tree-sitter-json = "0.20"
+tree-sitter-yaml = "0.20"
+tree-sitter-html = "0.20"
+tree-sitter-css = "0.20"
+tree-sitter-xml = "0.20"
+tree-sitter-bash = "0.20"
+tree-sitter-lua = "0.20"
+tree-sitter-perl = "0.20"
+tree-sitter-haskell = "0.20"
+tree-sitter-scala = "0.20"
+tree-sitter-erlang = "0.20"
+tree-sitter-elixir = "0.20"
+tree-sitter-dart = "0.20"
+tree-sitter-vue = "0.20"
+tree-sitter-sql = "0.20"
+tree-sitter-markdown = "0.20"
+tree-sitter-graphql = "0.20"
+tree-sitter-toml = "0.20"
+tree-sitter-ini = "0.20"
+
+# Parsing Rust spécifique
+syn = { version = "2.0", features = ["full", "parsing", "visit"] }
+quote = "1.0"
+
+# Base de données vectorielle
+qdrant-client = { version = "0.10", features = ["serde"] }
+# Alternative: vectordb-client = "0.3" // milvus: "0.1", pinecone: "0.3", weaviate: "0.3"
+
+
+# Emnbeddings
+fastembed = "3.0"
+
+# Base de donnée SQL
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "macros", "sqlite", "migrate"] }
+
+# Cache
+moka= { version = "0.12", features = ["future"] }
+lru = "0.12"
+
+# Compression
+zstd = "0.13"
+
+# Hashing et cryptographie
+sha2 = "0.10"
+blake3 = "1.5"
+
+
+# Traitement de texte
+regex = "1.10"
+unicode-segmentation = "1.11"
+
+# Date et heure
+chrono = { version = "0.4", features = ["serde"] }
+
+# Système de fichiers
+walkdir = "2.4"
+ignore = "0.4" # Pour respecter les fichiers .gitignore
+notify = "6.1" # File watching
+
+# Parallelisme
+rayon = "1.8"
+crossbeam = "0.8"
+
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+
+
+# Configuration
+config = "0.13"
+directories = "5.0" # Pour gérer les répertoires de configuration et de données, les chemins système (~/.config, etc.)
+
+# Language Server Protocol (LSP)
+tower-lsp = "0.20"
+lsp-types = "0.94"
+
+# Generartion de diagrammes
+plantuml = "0.1" # Ou générer du Mermaid en texte directement
+
+# Métriques de code
+petgraph = "0.6" # Pour générer des graphes de dépendances de code
+
+# Formatage de code
+rustfmt-wrapper = "0.2" # Pour formater le code Rust
+# Pour autres languages, on peut appeler les formatteurs externes via des commandes système
+
+# Tokenisation (pour comptage précis des tokens)
+tiktoken-rs = "0.5"
+
+# Variables d'environnement
+dotenvy = "0.15"
+
+# URL parsing
+url = "2.5"
+
+# Gestion de versions sémantiques
+semver = "1.0"
+
+[dev-dependencies]
+# Pour les tests
+proptest = "1.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+mockall = "0.12"
+wiremock = "0.6"
+tempfile = "3.8"
+pretty_assertions = "1.4"
+
+# Benchmarking
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+
+# Features optionnelles
+[features]
+default = ["full"]
+
+# Inclut toutes les fonctionnalités
+full = ["cloud-providers", "local-providers", "advanced-analysis", "plugins"]
+
+# Providers cloud
+cloud-providers = ["claude", "openai", "gemini", "AzureOpenAI"]
+
+claude = []
+openai = []
+gemini = []
+AzureOpenAI = []
+
+
+# Providers locaux (Llama, Mistral, etc.)
+local-providers = ["ollama", "mistral", "llamacpp"]
+ollama = []
+mistral = []
+llamacpp = []
+
+
+# Analyse de code avancée (parsing, métriques, diagrammes, etc.)
+advanced-analysis = ["tree-sitter", "static-analysis"]
+tree-sitter = []
+static-analysis = []
+
+# Support de plugins externes
+plugins = ["libloading"]
+
+# Support LSP pour IDE
+lsp-support = ["tower-lsp"] 
+
+# Mode verbeux de logging détaillé
+verbose-logging = []
+
+# Support expérimental
+experimental = []
+
+[workspace]
+members = [
+    ".",
+    "crates/codecrafter-core",
+    "crates/codecrafter-llm",
+    "crates/codecrafter-memory",
+    "crates/codecrafter-analysis",
+    "crates/codecrafter-refactoring",
+    "crates/codecrafter-docs",
+    "crates/codecrafter-cli",
+    "crates/codecrafter-lsp"
+]
+
+# Configuration des tests
+[[test]]
+name = "integration"
+path = "tests/integration_tests.rs"
+
+[[bench]]
+name = "performance"
+path = "benches/performance.rs"
+harness = false
+
+# Configuration des exemples
+[[example]]
+name = "basic_usage"
+path = "examples/basic_usage.rs"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
